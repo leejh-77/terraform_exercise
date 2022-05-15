@@ -30,3 +30,14 @@ resource "aws_instance" "web" {
     data.aws_security_group.default.id
   ]
 }
+
+# Mysql Database
+resource "aws_db_instance" "web_db" {
+  allocated_storage = 8
+  engine = "mysql"
+  engine_version = "8.0.28"
+  instance_class = "db.t2.micro"
+  username = "admin"
+  password = var.database_password
+  skip_final_snapshot = true
+}
